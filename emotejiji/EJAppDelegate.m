@@ -20,7 +20,7 @@
         NSString  *arrayPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"emotes.data"];
         
         // Fetch Emotes
-        NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:9393/api/v1/emotes"];
+        NSURL *url = [NSURL URLWithString:@"http://emotejiji.192.168.1.101.xip.io/api/v1/emotes"];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             [JSON writeToFile:arrayPath atomically:YES];
