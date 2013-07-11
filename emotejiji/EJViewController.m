@@ -33,17 +33,22 @@
 #define IPAD_TABLES_GRID       (CGSize){624, 0}
 
 #define HEADER_FONT            [UIFont fontWithName:@"HelveticaNeue" size:18]
-#define TOTAL_EMOTES           32
 
 @implementation EJViewController {
     MGBox *emotesGrid, *tablesGrid, *table1, *table2;
     UIImage *arrow;
     BOOL phone;
+    NSInteger totalEmotes;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *arrayPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"emotes.data"];
+    NSArray *emotes = [NSArray arrayWithContentsOfFile:arrayPath];
+    totalEmotes = [emotes count];
 
     // iPhone or iPad?
     UIDevice *device = UIDevice.currentDevice;
@@ -80,7 +85,7 @@
     table2.sizingMode = MGResizingShrinkWrap;
     
     // add emote boxes to the grid
-    for (NSInteger i = 1; i <= TOTAL_EMOTES; i++) {
+    for (NSInteger i = 0; i < totalEmotes; i++) {
         [emotesGrid.boxes addObject:[self emoteBoxFor:i]];
     }
     
